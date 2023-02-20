@@ -24,5 +24,7 @@ public class TestOccupation {
         System.out.println(loc2.toString());
 
         System.out.println(loc1.taxefoncieredubien());
+
+        System.out.println(Appartement.getLocataire());
     }
 }

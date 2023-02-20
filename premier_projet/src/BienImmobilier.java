@@ -57,8 +57,8 @@ public class BienImmobilier{
     public Proprietaire getProprietaire(){
         return this.proprietaire;
     }
-    public Locataire getLocataire(){
-        return this.locataire;
+    public String getLocataire(){
+        return this.locataire.getIdentite();
     }
     // Methodes de modification (setters)
     public void setRef(int Newreference){
