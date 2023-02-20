@@ -25,13 +25,13 @@ public class DocBibliotheque {
     }
 
     // TP2    
-    public int getEmprunteur(){
-        int val;
+    public  MembreBibliotheque getEmprunteur(){
+        MembreBibliotheque val;
         if(this.emprunteur == null){
-            val = -1;
+            val = null;
         }
         else{
-           val = this.emprunteur.getNumeroabonne();
+           val = this.emprunteur;
         }
         return val;
     }
@@ -114,6 +114,7 @@ public class DocBibliotheque {
             verite = true;
         }
         else if(this.status == 3){
+            if(this.reserveur == emprunteur){
             // TP2
             this.emprunteur = emprunteur;
             this.status = 1;
@@ -122,6 +123,7 @@ public class DocBibliotheque {
             nbreserv --;
             nbemprunt ++;
             verite = true;
+            }
         }
         return verite;
     }
@@ -148,11 +150,13 @@ public class DocBibliotheque {
                 verite = true;
             }
             else{
-                this.reserve = true;
-                // TP2
-                this.reserveur = reserveur;
-                nbreserv ++;
-                verite = true;
+                if(this.reserveur != this.emprunteur){
+                    this.reserve = true;
+                    // TP2
+                    this.reserveur = reserveur;
+                    nbreserv ++;
+                    verite = true;
+                }
             }   
         }
         return verite;
