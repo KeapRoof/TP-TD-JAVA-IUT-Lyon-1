@@ -190,24 +190,26 @@ public class DocBibliotheque {
     // 1 = emprunter
     // 2 = sur la pile des rendu
     // 3 = se reservation
-    public boolean annulerReservation(){
+    public boolean annulerReservation(MembreBibliotheque annuleur){
         boolean verite = false;
         if (this.reserve = true){
-            if(this.status == 1){
-                this.reserve = false;
-                // TP2
-                this.reserveur = null;
-                nbreserv --;
-                verite = true;
-            }
-            else{
-                this.reserve = false;
-                this.status = 2;
-                // TP2
-                this.reserveur = null;
-                nbreserv --;
-                nbpile ++;
-                verite = true;
+            if(annuleur == this.reserveur){
+                if(this.status == 1){
+                    this.reserve = false;
+                    // TP2
+                    this.reserveur = null;
+                    nbreserv --;
+                    verite = true;
+                }
+                else{
+                    this.reserve = false;
+                    this.status = 2;
+                    // TP2
+                    this.reserveur = null;
+                    nbreserv --;
+                    nbpile ++;
+                    verite = true;
+                }
             }
         }
         return verite;
