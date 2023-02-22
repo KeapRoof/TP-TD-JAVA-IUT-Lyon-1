@@ -150,7 +150,7 @@ public class DocBibliotheque {
                 verite = true;
             }
             else{
-                if(this.reserveur != this.emprunteur){
+                if(reserveur != this.emprunteur){
                     this.reserve = true;
                     // TP2
                     this.reserveur = reserveur;

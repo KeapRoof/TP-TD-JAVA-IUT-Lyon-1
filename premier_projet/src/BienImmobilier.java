@@ -54,8 +54,8 @@ public class BienImmobilier{
     public double getTaxefonciere(){
         return  this.taxefonciere;
     }
-    public Proprietaire getProprietaire(){
-        return this.proprietaire;
+    public String getProprietaire(){
+        return this.proprietaire.getIdentite();
     }
     public String getLocataire(){
         return this.locataire.getIdentite();
