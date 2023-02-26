@@ -36,13 +36,13 @@ public class DocBibliotheque {
         return val;
     }
     // TP2
-    public int getReserveur(){
-        int val;
+    public MembreBibliotheque getReserveur(){
+        MembreBibliotheque val;
         if(this.reserveur == null){
-            val = -1;
+            val = null;
         }
         else{
-           val = this.reserveur.getNumeroabonne();
+           val = this.reserveur;
         }
         return val;
     }

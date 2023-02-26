@@ -75,7 +75,6 @@ public class TestOccupation {
                     break;
                 default:
                     break;
-                 
             }
         } 
         while (choix != 0);
