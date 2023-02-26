@@ -6,10 +6,10 @@ public class TestOccupation {
 
     private static BienImmobilier Appartement = new BienImmobilier("Appartement",110,true,false,200,0.2,null,null);
     private static BienImmobilier Maison = new BienImmobilier("Maison",200,true,false,300,0.2,null,null);
-    private static Locataire loc1 = new Locataire("Mohamed","Rue de la paix",1000);
-    private static Locataire loc2 = new Locataire("Yacine","Rue de la guerre",500);
-    private static Proprietaire prop1 = new Proprietaire("Youssef",true,"Bd de la justice",0.1);
-    private static Proprietaire prop2 = new Proprietaire("Lakhdar",false,"Bd de la chance",0.2);
+    private static Locataire loc1 = new Locataire("Mohamed","9 Rue de la paix",1000);
+    private static Locataire loc2 = new Locataire("Yacine","5 Rue de la guerre",500);
+    private static Proprietaire prop1 = new Proprietaire("Youssef",true,"2 Bd de la justice",0.1);
+    private static Proprietaire prop2 = new Proprietaire("Lahkdar",false,"3 Bd de la chance",0.2);
 
 
     public static void main(String[] args){
@@ -23,25 +23,29 @@ public class TestOccupation {
         BienImmobilier choisis_b;
         Proprietaire choisis_p;
         Locataire choisis_l;
-
+        String nom;
         do{
+            System.out.println();
             System.out.println("Veuillez choisir une option");
             System.out.println("0 = Quitter le programme");
             System.out.println("1 = Obtenir le locataire");
             System.out.println("2 = Obtenir le propriétaire");
             System.out.println("3 = Obtenir Adresse du propriétaire");
             System.out.println("4 = Obtenir le loyer du Locataire");
+            System.out.println("5 = Changer nom Locataire");
+            System.out.println("6 = Changer nom Proprio");
+            System.out.println("7 = Obtenir reference bien");
             choix = ent.nextInt();
             switch(choix){
                 case 0:
                     break;
                 case 1:
                 choisis_b = choisir_bien();
-                System.out.println(choisis_b.getLocataire());
+                System.out.println("Le locataire du bien est : " + choisis_b.getLocataire());
                 break;
                 case 2:
                 choisis_b = choisir_bien();
-                System.out.println(choisis_b.getProprietaire());
+                System.out.println("Le propriétaire est : "+choisis_b.getProprietaire());
                 break;
                 case 3:
                     choisis_p = choisir_pro();
@@ -50,16 +54,31 @@ public class TestOccupation {
                 case 4:
                     choisis_l = choisir_loc();
                     System.out.println("Le loyer de "+ choisis_l.getIdentite() +" est de " + choisis_l.getLoyer());
+                    break;
+                case 5:
+                    choisis_l = choisir_loc();
+                    System.out.println("Entrez le nom du nouveaux loc");
+                    nom = ent.nextLine();
+                    choisis_l.setIdentite(nom);
+                    System.out.println("Le nom du locataire a était changé");
+                    break;
+                case 6:
+                    choisis_p = choisir_pro();
+                    System.out.println("Entrez le nom du nouveaux loc");
+                    nom = ent.nextLine();
+                    choisis_p.setIdentite(nom);
+                    System.out.println("Le nom du locataire a était changé");
+                    break;
+                case 7:
+                    choisis_b = choisir_bien();
+                    System.out.println("La réference du bien est : "+choisis_b.getRef());
+                    break;
                 default:
                     break;
-
+                 
             }
-
-
-
         } 
         while (choix != 0);
-
 }
 
 private static BienImmobilier choisir_bien(){
