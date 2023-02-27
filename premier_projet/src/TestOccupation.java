@@ -35,9 +35,12 @@ public class TestOccupation {
             System.out.println("5 = Changer nom Locataire");
             System.out.println("6 = Changer nom Proprio");
             System.out.println("7 = Obtenir reference bien");
+            System.out.println("Que souhaitez vous faire ?");
             choix = ent.nextInt();
             switch(choix){
                 case 0:
+                    System.out.println("Fin du programme !");
+                    System.exit(0);
                     break;
                 case 1:
                 choisis_b = choisir_bien();
@@ -45,11 +48,11 @@ public class TestOccupation {
                 break;
                 case 2:
                 choisis_b = choisir_bien();
-                System.out.println("Le propriétaire est : "+choisis_b.getProprietaire());
+                System.out.println("Le propriétaire est : "+ choisis_b.getProprietaire());
                 break;
                 case 3:
                     choisis_p = choisir_pro();
-                    System.out.println("L'adresse de " + choisis_p.getIdentite()  + " est " + choisis_p.getAdresse());
+                    System.out.println("L'adresse de " + choisis_p.getIdentite() + " est " + choisis_p.getAdresse());
                     break;
                 case 4:
                     choisis_l = choisir_loc();
@@ -74,6 +77,7 @@ public class TestOccupation {
                     System.out.println("La réference du bien est : "+choisis_b.getRef());
                     break;
                 default:
+                    System.err.println("Veuillez choisir une action correcte");
                     break;
             }
         } 
@@ -145,5 +149,6 @@ private static Proprietaire choisir_pro(){
     } while(opt != 1 && opt !=2);
     return c;
 }
+
 
 }

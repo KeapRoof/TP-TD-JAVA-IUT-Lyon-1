@@ -250,4 +250,22 @@ public class DocBibliotheque {
         }
         return verite;
     }
+
+    public  String trad(){
+        int d = this.getStatus();
+        String trad;
+        if(d == 0){
+            trad = "Sur étagère";
+        }
+        else if(d == 1){
+            trad = "En cours d'emprunt";
+        }
+        else if(d == 2){
+            trad = "Sur pile rendu";
+        }
+        else{
+            trad = "Dans section spéciale réservation";
+        }
+        return trad;
+    }
 }
