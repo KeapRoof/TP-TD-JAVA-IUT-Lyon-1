@@ -116,8 +116,8 @@ public class BienImmobilier{
         this.locataire = Newlocataire;
     }
     public String toString(){
-        return "BienImmobilier [reference=" + this.reference + ", description=" + description + ", surface=" + surface + ", location=" + location + ", vente=" + vente + ", prixm2=" + prixm2 + ", tximpot=" + tximpot + ", taxefonciere=" + taxefonciere + 
-        ", proprietaire=" + proprietaire.getIdentite() + ", locataire=" + locataire.getIdentite() +"]";
+        return "La reference est " + this.reference + ",sa description = " + description + ",sa surface est de " + surface + ".Est il en location= " + location + ",Est il en vente=" + vente + ",son prixm2 est" + prixm2 + ",sa tximpot est " + tximpot + ", sa taxefonciere est" + taxefonciere + 
+        ",son proprio est " + proprietaire.getIdentite() + ",son locataire est " + locataire.getIdentite();
     }
     private double calcTaxeFonc(){
         /*  

@@ -4,6 +4,7 @@ public class TestOccupation {
     BienImmobilier object;
     int choix;
 
+    private static AgenceImmobiliere agence1 = new AgenceImmobiliere();
     private static BienImmobilier Appartement = new BienImmobilier("Appartement",110,true,false,200,0.2,null,null);
     private static BienImmobilier Maison = new BienImmobilier("Maison",200,true,false,300,0.2,null,null);
     private static Locataire loc1 = new Locataire("Mohamed","9 Rue de la paix",1000);
@@ -19,6 +20,14 @@ public class TestOccupation {
         loc2.setOccupe(Maison);
         Appartement.setProprietaire(prop1);
         Maison.setProprietaire(prop2);
+        agence1.ajouterBien(Appartement);
+        agence1.ajouterBien(Appartement);
+        agence1.ajouterBien(Maison);
+        agence1.afficherbiens();
+        agence1.supprimerbien(1);
+        System.out.println("Après suppression du bien 1");
+        agence1.afficherbiens();
+        
         int choix;
         BienImmobilier choisis_b;
         Proprietaire choisis_p;
@@ -35,6 +44,7 @@ public class TestOccupation {
             System.out.println("5 = Changer nom Locataire");
             System.out.println("6 = Changer nom Proprio");
             System.out.println("7 = Obtenir reference bien");
+            System.out.println("8 = Affiche les biens de l'agence");
             System.out.println("Que souhaitez vous faire ?");
             choix = ent.nextInt();
             switch(choix){
@@ -75,6 +85,9 @@ public class TestOccupation {
                 case 7:
                     choisis_b = choisir_bien();
                     System.out.println("La réference du bien est : "+choisis_b.getRef());
+                    break;
+                case 8:
+                    agence1.afficherbiens();
                     break;
                 default:
                     System.err.println("Veuillez choisir une action correcte");
