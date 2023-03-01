@@ -98,6 +98,18 @@ public class DocBibliotheque {
         this.status = status;
     }
 
+    public void setReserve(boolean reserve){
+        this.reserve = reserve;
+    }
+
+    public void setEmprunteur(MembreBibliotheque emprunteur){
+        this.emprunteur = emprunteur;
+    }
+
+    public void setReserveur(MembreBibliotheque reserveur){
+        this.reserveur = reserveur;
+    }
+
 
     // 0 = sur les étagères
     // 1 = emprunter
@@ -105,24 +117,27 @@ public class DocBibliotheque {
     // 3 = pile reservation
     public boolean emprunter(MembreBibliotheque emprunteur){
         boolean verite = false;
-        if (this.status == 0){
-            // TP2
-            this.emprunteur = emprunteur;
-            this.status = 1;
-            // TP2
-            nbemprunt ++;
-            verite = true;
-        }
-        else if(this.status == 3){
-            if(this.reserveur == emprunteur){
-            // TP2
-            this.emprunteur = emprunteur;
-            this.status = 1;
-            this.reserve = false;
-            // TP2
-            nbreserv --;
-            nbemprunt ++;
-            verite = true;
+        if(emprunteur != null){
+            if (this.status == 0){
+                // TP2
+                this.emprunteur = emprunteur;
+                this.status = 1;
+                // TP2
+                nbemprunt ++;
+                System.out.println("Un emprunt a été effectué");
+                verite = true;
+            }
+            else if(this.status == 3){
+                if(this.reserveur == emprunteur){
+                    this.emprunteur = emprunteur;
+                    this.reserveur = null;
+                    this.status = 1;
+                    this.reserve = false;
+                    nbreserv --;
+                    nbemprunt ++;
+                    verite = true;
+                    System.out.println("Un emprunt a été effectué");
+                }
             }
         }
         return verite;
@@ -131,33 +146,17 @@ public class DocBibliotheque {
     // 1 = emprunter
     // 2 = sur la pile des rendu
     // 3 = Pile reservation
-    public boolean reserver(MembreBibliotheque reserveur){
+    public boolean reserver(MembreBibliotheque reserveurpot){
         boolean verite = false;
-        if(this.reserve == true){
-            System.out.println("Le document est deja reserve");
-        }
-        else if(this.status == 0){
-            System.out.println("Vous pouvez allez l'emprunter directement");
-        }
-        else{
-            if(this.status == 2){
-                this.reserve = true;
-                this.status = 3;
-                // TP2
-                this.reserveur = reserveur;
-                nbpile --;
-                nbreserv ++;
-                verite = true;
-            }
-            else{
-                if(reserveur != this.emprunteur){
-                    this.reserve = true;
-                    // TP2
-                    this.reserveur = reserveur;
-                    nbreserv ++;
+        if(reserveurpot != null  && this.emprunteur != reserveurpot){
+            if(this.reserveur == null){
+                if(this.getStatus() == 1){
+                    this.reserveur = reserveurpot;
                     verite = true;
+                    this.reserve = true;
+                    System.out.println("Un reservation a été effectué");
                 }
-            }   
+            }
         }
         return verite;
     }
@@ -175,6 +174,7 @@ public class DocBibliotheque {
             nbemprunt --;
             nbpile ++;
             verite = true;
+            System.out.println("Un rendu a été effectué");
         }
         else if (this.status == 1 && this.reserve == true){
             this.status = 3;
@@ -183,6 +183,7 @@ public class DocBibliotheque {
             nbemprunt --;
             nbreserv ++;
             verite = true;
+            System.out.println("Un rendu a été effectué");
         }
         return verite;
     }
@@ -192,23 +193,25 @@ public class DocBibliotheque {
     // 3 = se reservation
     public boolean annulerReservation(MembreBibliotheque annuleur){
         boolean verite = false;
-        if (this.reserve = true){
-            if(annuleur == this.reserveur){
-                if(this.status == 1){
-                    this.reserve = false;
-                    // TP2
-                    this.reserveur = null;
-                    nbreserv --;
-                    verite = true;
-                }
-                else{
-                    this.reserve = false;
-                    this.status = 2;
-                    // TP2
-                    this.reserveur = null;
-                    nbreserv --;
-                    nbpile ++;
-                    verite = true;
+        if(annuleur != null){
+            if (this.reserve == true){
+                if(annuleur == this.reserveur){
+                    if(this.status == 1){
+                        this.reserve = false;
+                        // TP2
+                        this.reserveur = null;
+                        verite = true;
+                        System.out.println("Une reservation a été annulé");
+                    }
+                    else if(this.status == 3){
+                        this.reserve = false;
+                        this.status = 2;
+                        this.reserveur = null;
+                        nbreserv --;
+                        nbpile ++;
+                        verite = true;
+                        System.out.println("Une reservation a été annulé");
+                    }
                 }
             }
         }
@@ -220,11 +223,12 @@ public class DocBibliotheque {
     // 3 = Pile reservation
     public boolean remisesuretagere(){
         boolean verite = false;
-        if (this.status == 3){
+        if (this.status == 2){
             this.status = 0;
             // TP2
             nbpile --;
             verite = true;
+            System.out.println("Un document a été remis sur les étagères");
         }
         return verite;
     }
