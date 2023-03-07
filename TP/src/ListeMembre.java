@@ -31,7 +31,7 @@ public class ListeMembre {
 
     public void affichecarmem(){
         for(int i = 0; i < listeMembre.size(); i++){
-            System.out.println(listeMembre.get(i).getNom());
+            System.out.println( i +"."+ listeMembre.get(i).getNom());
         }
     }
 
@@ -40,6 +40,15 @@ public class ListeMembre {
             if(listeMembre.get(i).getNumeroabonne() == num){
                 System.out.println(listeMembre.get(i).getNom());
             }
+        }
+    }
+
+    public MembreBibliotheque renvoimem(int index){
+        if(index <= this.listeMembre.size()-1){
+            return this.listeMembre.get(index);
+        }
+        else{
+            return null;
         }
     }
 }

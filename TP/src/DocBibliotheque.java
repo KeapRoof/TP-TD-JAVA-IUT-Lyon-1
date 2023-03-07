@@ -73,9 +73,7 @@ public class DocBibliotheque {
         "le code du doc est " + this.codearch + 
         " le titre est " + this.titre + 
         " l'auteur est " + this.auteur +
-        " l'année est " + this.annee +
-        " l'emprunteur est " + this.emprunteur.getNom() +
-        " le reserveur est " + this.reserveur.getNom() ;
+        " l'année est " + this.annee ;
     }
 
     public void setCodearch(String codearch){

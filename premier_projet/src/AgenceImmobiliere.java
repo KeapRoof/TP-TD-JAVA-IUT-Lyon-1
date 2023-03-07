@@ -1,14 +1,13 @@
 class AgenceImmobiliere{
     private int nb_biens;
     private BienImmobilier[] tab;
+    private static final int MAX = 10;
 
     public AgenceImmobiliere(){
         this.nb_biens = 0;
-        //Atribut tablau de BienImmobilier de taille 10 vide
-        this.tab = new BienImmobilier[10];
+        //Atribut tableau de BienImmobilier de taille 10 vide
+        this.tab = new BienImmobilier[MAX];
     }
-
-
 
     private int longueur(){
         int i = this.tab.length;
@@ -19,11 +18,12 @@ class AgenceImmobiliere{
         boolean verite = false;
         int i = 0;
         boolean doublon = false;
-        while(i<10 && verite == false && doublon == false){    
+        while(i<MAX && verite == false && doublon == false){    
             if(tab[i] == null){
                 tab[i] = lebien;
                 verite = true;
                 this.nb_biens++;
+                System.out.println("Bien ajouté");
             }
             else if(tab[i] == lebien){
                 System.out.println("Ce bien est déjà dans l'agence");
@@ -38,7 +38,7 @@ class AgenceImmobiliere{
     
     public void afficherbiens(){
         int i = 0;
-        while(i<10){
+        while(i<nb_biens){
             if(tab[i] != null){
                 System.out.println("--------------------");
                 System.out.println(tab[i].toString());
@@ -60,7 +60,7 @@ class AgenceImmobiliere{
     public int rechercheref(int ref){
         int index = -1;
         int i = 0;
-        while(i<10){
+        while(i<nb_biens){
             if(tab[i] != null){            
                 if(tab[i].getRef() == ref){
                     index = i;

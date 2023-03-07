@@ -9,10 +9,7 @@ class CatalogueBibliotheque{
 
     public boolean ajdoc(DocBibliotheque doc){
         boolean verite = false;
-        if(this.catalogue.contains(doc)){
-            verite = false;
-        }
-        else{
+        if(this.catalogue.contains(doc) == false){
             this.catalogue.add(doc);
             verite = true;
         }
@@ -25,14 +22,11 @@ class CatalogueBibliotheque{
             this.catalogue.remove(doc);
             verite = true;
         }
-        else{
-            verite = false;
-        }
         return verite;
     }
 
     public DocBibliotheque accesBibliotheque(int index){
-        if(index < this.catalogue.size()-1){
+        if(index <= this.catalogue.size()-1 && index >= 0){
             return this.catalogue.get(index);
         }
         else{
@@ -42,7 +36,7 @@ class CatalogueBibliotheque{
 
     public void affichedoc(){
         for(int i = 0; i < this.catalogue.size(); i++){
-            System.out.println(this.catalogue.get(i).getTitre());
+            System.out.println( i +". "+ this.catalogue.get(i).getTitre());
         }
         if(this.catalogue.size() < 1){
             System.out.println("Il n'y a rien dans le catalogue");
@@ -68,51 +62,26 @@ class CatalogueBibliotheque{
 
     public boolean emprunterdoc(int index,MembreBibliotheque membre){
         boolean verite = false;
-        if(index < this.catalogue.size()-1){
-            if(this.catalogue.get(index).getEmprunteur() == null){
-                this.catalogue.get(index).setEmprunteur(membre);
-                verite = true;
-            }
-            else{
-                verite = false;
-            }
-        }
-        else{
-            verite = false;
+        if(index <= this.catalogue.size()-1){
+            this.catalogue.get(index).emprunter(membre);
+            verite = true;
         }
         return verite;
     }
 
     public boolean reservedoc(int index,MembreBibliotheque membre){
         boolean verite = false;
-        if(index < this.catalogue.size()-1){
-            if(this.catalogue.get(index).getReserveur() == null){
-                this.catalogue.get(index).setReserveur(membre);
-                verite = true;
-            }
-            else{
-                verite = false;
-            }
-        }
-        else{
-            verite = false;
+        if(index <= this.catalogue.size()-1){
+            this.catalogue.get(index).reserver(membre);
         }
         return verite;
     }
 
     public boolean annulresa(int index,MembreBibliotheque membre){
         boolean verite = false;
-        if(index < this.catalogue.size()-1){
-            if(this.catalogue.get(index).getReserveur() == membre){
-                this.catalogue.get(index).setReserveur(null);
-                verite = true;
-            }
-            else{
-                verite = false;
-            }
-        }
-        else{
-            verite = false;
+        if(index <= this.catalogue.size()-1){
+            this.catalogue.get(index).annulerReservation(membre);
+            verite = true;
         }
         return verite;
     }

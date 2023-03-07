@@ -1,17 +1,17 @@
 public class BienImmobilier{
     // Attributs
-    private static int nbreBienImmobilier = 0;
-    private int reference;
-    private String description;
-    private int surface;
-    private boolean location;
-    private boolean vente;
-    private double prixm2;
-    private double tximpot;
-    private double taxefonciere;
+    protected static int nbreBienImmobilier = 0;
+    protected int reference;
+    protected String description;
+    protected int surface;
+    protected boolean location;
+    protected boolean vente;
+    protected double prixm2;
+    protected double tximpot;
+    protected double taxefonciere;
     // Lien avec les autres classes
-    private Proprietaire proprietaire;
-    private Locataire locataire;
+    protected Proprietaire proprietaire;
+    protected Locataire locataire;
 
 
     // Constructeur

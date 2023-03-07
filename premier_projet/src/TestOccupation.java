@@ -21,12 +21,12 @@ public class TestOccupation {
         Appartement.setProprietaire(prop1);
         Maison.setProprietaire(prop2);
         agence1.ajouterBien(Appartement);
-        agence1.ajouterBien(Appartement);
         agence1.ajouterBien(Maison);
         agence1.afficherbiens();
-        agence1.supprimerbien(1);
-        System.out.println("Après suppression du bien 1");
+        agence1.supprimerbien(0);
+        System.out.println("Après suppression du bien 0");
         agence1.afficherbiens();
+
         
         int choix;
         BienImmobilier choisis_b;
