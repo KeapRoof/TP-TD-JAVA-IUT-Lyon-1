@@ -11,9 +11,18 @@ public class TestOccupation {
     private static Locataire loc2 = new Locataire("Yacine","5 Rue de la guerre",500);
     private static Proprietaire prop1 = new Proprietaire("Youssef",true,"2 Bd de la justice",0.1);
     private static Proprietaire prop2 = new Proprietaire("Lahkdar",false,"3 Bd de la chance",0.2);
+    private static BienImmobilier test = new BienImmobilier("Terrain",1000,false,false,100,0.2,null,null);
+    private static Terrain terrain1 = new Terrain("Terrain",1000,false,false,100,0.2,null,null,0.5);
+
+
+
 
 
     public static void main(String[] args){
+
+        System.out.println(terrain1.getLocataire());
+        System.out.println(terrain1.getTaxefonciere());
+        System.out.println(test.getTaxefonciere());
         Appartement.setLocataire(loc1);
         Maison.setLocataire(loc2);
         loc1.setOccupe(Appartement);

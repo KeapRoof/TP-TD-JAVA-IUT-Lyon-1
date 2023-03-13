@@ -57,8 +57,8 @@ public class BienImmobilier{
     public String getProprietaire(){
         return this.proprietaire.getIdentite();
     }
-    public String getLocataire(){
-        return this.locataire.getIdentite();
+    public Locataire getLocataire(){
+        return this.locataire;
     }
     // Methodes de modification (setters)
     public void setRef(int Newreference){
@@ -132,7 +132,7 @@ public class BienImmobilier{
         double abbatement = retenue * 0.50;
         double revenu_cadastral = abbatement * this.tximpot;
         taxe = Math.round((revenu_cadastral*100)/100);
-        return taxe;
+        return taxe+100;
     }
 
     /*

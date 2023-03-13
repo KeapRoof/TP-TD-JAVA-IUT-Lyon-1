@@ -7,7 +7,7 @@ public class Terrain extends BienImmobilier{
         super(Newdescription,Newsurface,Newlocation,Newvente,Newprixm2,Newtximpot,Newproprietaire,Newlocataire);
         this.viable = viable;
         this.locataire = base;
-        this.taxefonciere = calcTaxeFonc();
+        this.setTaxefonciere(calcTaxeFonc());
     }
 
     private double calcTaxeFonc(){
@@ -30,4 +30,7 @@ public class Terrain extends BienImmobilier{
         return "Terrain: " + this.description + " " + this.surface + " " + this.location + " " + this.vente + " " + this.prixm2 + " " + this.tximpot + " " + this.proprietaire + " " + this.locataire + " " + this.viable + " " + this.taxefonciere;
     }
 
+    public void setLocataire(Locataire Newlocataire){
+        this.locataire = null;
+    }
 }
