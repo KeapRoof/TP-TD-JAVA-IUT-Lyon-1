@@ -4,6 +4,8 @@ public class MembreBibliotheque {
     private int tel;
     private String adresse;
     private int numeroabonne;
+    private int nbdocempruntes;
+    protected int possibiliteEmprunt;
     public static int dernierNumeroAbonne = 1;
 
     public MembreBibliotheque(String prenom, String nom, int tel, String adresse){
@@ -14,6 +16,8 @@ public class MembreBibliotheque {
         this.adresse = adresse;
         this.numeroabonne = numeroabonne;
         dernierNumeroAbonne ++;
+        this.nbdocempruntes = 0;
+        this.possibiliteEmprunt = 0;
     }
 
     // Getters
@@ -36,6 +40,10 @@ public class MembreBibliotheque {
 
     public int getNumeroabonne(){
         return this.numeroabonne;
+    }
+
+    public int getnbdocempruntes(){
+        return this.nbdocempruntes;
     }
 
     // Setters
@@ -62,5 +70,21 @@ public class MembreBibliotheque {
 
     public String toString(){
         return "Membre de la bibliotheque: " + this.prenom + " " + this.nom + " Numero de tel :" + this.tel + " Adresse :" + this.adresse + " Numero d'abonée :" + this.numeroabonne;
+    }
+
+    public void incrementerNbDocEmpruntes(){
+        this.nbdocempruntes ++;
+    }
+
+    public void decrementerNbDocEmpruntes(){
+        this.nbdocempruntes --;
+    }
+
+    public boolean peutEmprunter(){
+        boolean verite = false;
+        if(this.nbdocempruntes < this.possibiliteEmprunt){
+            verite = true;
+        }
+        return verite;
     }
 }

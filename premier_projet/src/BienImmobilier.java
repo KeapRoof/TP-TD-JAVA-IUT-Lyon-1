@@ -119,7 +119,7 @@ public class BienImmobilier{
         return "La reference est " + this.reference + ",sa description = " + description + ",sa surface est de " + surface + ".Est il en location= " + location + ",Est il en vente=" + vente + ",son prixm2 est" + prixm2 + ",sa tximpot est " + tximpot + ", sa taxefonciere est" + taxefonciere + 
         ",son proprio est " + proprietaire.getIdentite() + ",son locataire est " + locataire.getIdentite();
     }
-    private double calcTaxeFonc(){
+    protected double calcTaxeFonc(){
         /*  
          * Le cout de sa taxe fonciere est obtenue en multipliant
          * la surface le tarif au m2 et le nombre de mois de l'annee
@@ -132,7 +132,7 @@ public class BienImmobilier{
         double abbatement = retenue * 0.50;
         double revenu_cadastral = abbatement * this.tximpot;
         taxe = Math.round((revenu_cadastral*100)/100);
-        return taxe+100;
+        return taxe;
     }
 
     /*

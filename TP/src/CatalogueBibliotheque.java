@@ -64,6 +64,7 @@ class CatalogueBibliotheque{
         boolean verite = false;
         if(index <= this.catalogue.size()-1){
             this.catalogue.get(index).emprunter(membre);
+            membre.incrementerNbDocEmpruntes();
             verite = true;
         }
         return verite;
@@ -84,5 +85,19 @@ class CatalogueBibliotheque{
             verite = true;
         }
         return verite;
+    }
+
+    public boolean rendredoc(int index){
+        boolean verite = false;
+        if(index <= this.catalogue.size()-1){
+            this.catalogue.get(index).getEmprunteur().decrementerNbDocEmpruntes();
+            this.catalogue.get(index).rendre();
+            verite = true;
+        }
+        return verite;
+    }
+
+    public int nbdoc(){
+        return this.catalogue.size();
     }
 }

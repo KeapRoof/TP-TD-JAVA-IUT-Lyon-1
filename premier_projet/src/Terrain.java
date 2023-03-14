@@ -7,13 +7,15 @@ public class Terrain extends BienImmobilier{
         super(Newdescription,Newsurface,Newlocation,Newvente,Newprixm2,Newtximpot,Newproprietaire,Newlocataire);
         this.viable = viable;
         this.locataire = base;
-        this.setTaxefonciere(calcTaxeFonc());
+        //this.setTaxefonciere(calcTaxeFonc());
+        this.taxefonciere=calcTaxeFonc();
+        this.prixm2 = 0;
     }
 
-    private double calcTaxeFonc(){
+    protected double calcTaxeFonc(){
         double taxe;
         double loyertheorique = this.surface * this.prixm2 * 12;
-        taxe = loyertheorique * 0.25 + 10*this.surface;
+        taxe = loyertheorique * 1.25 + 10*this.surface;
         return taxe;
     }
 

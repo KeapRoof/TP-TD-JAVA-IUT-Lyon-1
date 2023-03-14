@@ -23,6 +23,7 @@ public class TestOccupation {
         System.out.println(terrain1.getLocataire());
         System.out.println(terrain1.getTaxefonciere());
         System.out.println(test.getTaxefonciere());
+        System.out.println(terrain1.getPrixm2());
         Appartement.setLocataire(loc1);
         Maison.setLocataire(loc2);
         loc1.setOccupe(Appartement);
