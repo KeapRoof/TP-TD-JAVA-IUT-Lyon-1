@@ -62,7 +62,7 @@ public class TestBibliotheque {
                     break;
                 case 3:
                     choisis_d = choixdoc2();
-                    cat1.accesBibliotheque(choisis_d).rendre();
+                    cat1.rendredoc(choisis_d);
                     break;
                 case 4:
                     choisis_d = choixdoc2();
