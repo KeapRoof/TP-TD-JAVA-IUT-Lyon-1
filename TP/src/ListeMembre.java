@@ -21,11 +21,7 @@ public class ListeMembre {
     public MembreBibliotheque accesmembre(int num){
         // Renvoie l'identite du membre si il existe
         MembreBibliotheque id = null;
-        for(int i = 0; i < listeMembre.size(); i++){
-            if(listeMembre.get(i).getNumeroabonne() == num){
-                id = listeMembre.get(i);
-            }
-        }
+        
         return id;
     }
 

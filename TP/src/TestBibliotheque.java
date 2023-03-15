@@ -15,6 +15,10 @@ public class TestBibliotheque {
     private static DocBibliotheque cd1 = new CD("004 178 K20PM", "Caméléon", "ZKR",2022, 0, new String[]{"chanson1", "chanson2", "chanson3"});
     private static DocBibliotheque url1 = new DocURL("004 178 K20PM","Thèse de Rachid", "Rachid", 2022, 0, "www.rachid.com","Thèse portant sur la théorie des cordes");
     private static DocBibliotheque livre1 = new Livre("004 882", "Livre de Rachid", "Rachid", 2022, 0,200,69200,"Hatier");
+    private static DocBibliotheque cd2 = new CD ("HEHEHE","Zebre","Naps",2022,0,new String[]{"chanson1","chanson2","chanson3"});
+    private static DocBibliotheque cd3 = new CD ("HEHEHE","Pasteque","Naps",2022,0,new String[]{"chanson1","chanson2","chanson3"});
+    private static DocBibliotheque cd4 = new CD ("HEHEHE","Banane","Naps",2022,0,new String[]{"chanson1","chanson2","chanson3"});
+    private static DocBibliotheque cd5 = new CD ("HEHEHE","Pomme","Naps",2022,0,new String[]{"chanson1","chanson2","chanson3"});
     public static void main(String[] args){
 
         System.out.println("Bienvenue dans la bibliotheque");
@@ -30,6 +34,10 @@ public class TestBibliotheque {
         cat1.ajdoc(cd1);
         cat1.ajdoc(url1);
         cat1.ajdoc(livre1);
+        cat1.ajdoc(cd2);
+        cat1.ajdoc(cd3);
+        cat1.ajdoc(cd4);
+        cat1.ajdoc(cd5);
 
         do{
             System.out.println();
@@ -46,6 +54,7 @@ public class TestBibliotheque {
             System.out.println("9 = Nombre de doc dans section reservation");
             System.out.println("10 = Nombre de CD");
             System.out.println("11 = Nombre de Livre");
+            System.out.println("12 = Obtenir les info d'un membre");
             choix = ent.nextInt();
             switch(choix){
                 case 0:
@@ -92,6 +101,9 @@ public class TestBibliotheque {
                     break;
                 case 11:
                     System.out.println("Le nombre de Livre est : " + TestBibliotheque.compteLivre());
+                    break;
+                case 12:
+                    menumem();
                     break;
                 default:
                     break;
@@ -236,4 +248,44 @@ private static void menudoc(){
         }
         return compteur;
     }
+
+private static void menumem(){
+        int choix;
+        MembreBibliotheque choisis_m;
+        do {
+            System.out.println();
+            System.out.println("Veuillez choisir une option");
+            System.out.println("0 = Sortir du menu membre");
+            System.out.println("1 = Obtenir le prenom d'un membre");
+            System.out.println("2 = Obtenir le nom d'un membre");
+            System.out.println("3 = Obtenir le code d'un membre");
+            System.out.println("4 = Obtenir le nombre de doc emprunté");
+            choix = ent.nextInt();
+            ent.nextLine();
+            switch(choix){
+                case 0:
+                System.out.println("Fin du menu doc !");
+                break;
+                case 1:
+                    choisis_m = choixmembre2();
+                    System.out.println("Le prenom : "+ choisis_m.getPrenom());
+                break;
+                case 2:
+                    choisis_m = choixmembre2();
+                    System.out.println("Le nom : "+ choisis_m.getNom());
+                break;
+                case 3:
+                    choisis_m = choixmembre2();
+                    System.out.println("Le code : " + choisis_m.getNumeroabonne());
+                    break;
+                case 4:
+                    choisis_m = choixmembre2();
+                    System.out.println("Le nombre de doc emprunter : " + choisis_m.getnbdocempruntes());
+                    break;
+                default:
+                    break;
+                }
+            }while(choix != 0);
+    }
+
 }

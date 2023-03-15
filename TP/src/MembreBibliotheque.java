@@ -4,7 +4,7 @@ public class MembreBibliotheque {
     private int tel;
     private String adresse;
     private int numeroabonne;
-    private int nbdocempruntes;
+    protected int nbdocempruntes;
     protected int possibiliteEmprunt;
     public static int dernierNumeroAbonne = 1;
 

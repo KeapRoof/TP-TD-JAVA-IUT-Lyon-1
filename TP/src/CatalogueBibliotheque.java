@@ -9,7 +9,7 @@ class CatalogueBibliotheque{
 
     public boolean ajdoc(DocBibliotheque doc){
         boolean verite = false;
-        if(this.catalogue.contains(doc) == false){
+        if(this.catalogue.contains(doc) == false && doc != null){
             this.catalogue.add(doc);
             verite = true;
         }
@@ -26,12 +26,11 @@ class CatalogueBibliotheque{
     }
 
     public DocBibliotheque accesBibliotheque(int index){
-        if(index <= this.catalogue.size()-1 && index >= 0){
-            return this.catalogue.get(index);
+        DocBibliotheque val = null;
+        if(index >= 0 && index < this.catalogue.size()){
+            val = this.catalogue.get(index);
         }
-        else{
-            return null;
-        }
+        return val;
     }
 
     public void affichedoc(){
@@ -44,11 +43,12 @@ class CatalogueBibliotheque{
     }
 
     public void affichedocemp(){
-        for(int i = 0; i < this.catalogue.size(); i++){
+        int i = 0;
+        while(accesBibliotheque(i) != null)
             if(this.catalogue.get(i).getEmprunteur() != null){
                 System.out.println(this.catalogue.get(i).getTitre());
             }
-        }
+            i = i + 1;
     }
 
     public void affichecardoc(DocBibliotheque doc){
@@ -62,7 +62,7 @@ class CatalogueBibliotheque{
 
     public boolean emprunterdoc(int index,MembreBibliotheque membre){
         boolean verite = false;
-        if(index <= this.catalogue.size()-1){
+        if(this.accesBibliotheque(index) != null && membre.peutEmprunter()){
             this.catalogue.get(index).emprunter(membre);
             membre.incrementerNbDocEmpruntes();
             verite = true;
@@ -72,7 +72,7 @@ class CatalogueBibliotheque{
 
     public boolean reservedoc(int index,MembreBibliotheque membre){
         boolean verite = false;
-        if(index <= this.catalogue.size()-1){
+        if(this.accesBibliotheque(index) != null){
             this.catalogue.get(index).reserver(membre);
         }
         return verite;
@@ -80,7 +80,7 @@ class CatalogueBibliotheque{
 
     public boolean annulresa(int index,MembreBibliotheque membre){
         boolean verite = false;
-        if(index <= this.catalogue.size()-1){
+        if(this.accesBibliotheque(index) != null){
             this.catalogue.get(index).annulerReservation(membre);
             verite = true;
         }
@@ -89,7 +89,7 @@ class CatalogueBibliotheque{
 
     public boolean rendredoc(int index){
         boolean verite = false;
-        if(index <= this.catalogue.size()-1){
+        if(this.accesBibliotheque(index) != null){
             this.catalogue.get(index).getEmprunteur().decrementerNbDocEmpruntes();
             this.catalogue.get(index).rendre();
             verite = true;
