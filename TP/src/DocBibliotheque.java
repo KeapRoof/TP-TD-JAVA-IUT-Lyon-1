@@ -113,7 +113,7 @@ public class DocBibliotheque {
     // 1 = emprunter
     // 2 = sur la pile des rendu
     // 3 = pile reservation
-    public boolean emprunter(MembreBibliotheque emprunteur){
+    public boolean emprunter(MembreBibliotheque emprunteur) throws ExceptionDoc {
         boolean verite = false;
         if(emprunteur != null){
             if (this.status == 0){
@@ -136,15 +136,24 @@ public class DocBibliotheque {
                     verite = true;
                     System.out.println("Un emprunt a été effectué");
                 }
+                else{
+                    throw new ExceptionDoc();
+                }
+            }
+            else{
+                throw new ExceptionDoc();
             }
         }
+        else{
+            throw new ExceptionDoc();
+        }
         return verite;
-    }
+}
     // 0 = sur les étagères
     // 1 = emprunter
     // 2 = sur la pile des rendu
     // 3 = Pile reservation
-    public boolean reserver(MembreBibliotheque reserveurpot){
+    public boolean reserver(MembreBibliotheque reserveurpot) throws ExceptionReservation {
         boolean verite = false;
         if(reserveurpot != null  && this.emprunteur != reserveurpot){
             if(this.reserveur == null){
@@ -154,7 +163,16 @@ public class DocBibliotheque {
                     this.reserve = true;
                     System.out.println("Un reservation a été effectué");
                 }
+                else{
+                    throw new ExceptionReservation();
+                }
             }
+            else{
+                throw new ExceptionReservation();
+            }
+        }
+        else{
+            throw new ExceptionReservation();
         }
         return verite;
     }
@@ -163,7 +181,7 @@ public class DocBibliotheque {
     // 1 = emprunter
     // 2 = sur la pile des rendu
     // 3 = Section reservation
-    public boolean rendre(){
+    public boolean rendre() throws RetourException{
         boolean verite = false;
         if (this.status == 1 && this.reserve == false){
             this.status = 2;
@@ -172,7 +190,7 @@ public class DocBibliotheque {
             nbemprunt --;
             nbpile ++;
             verite = true;
-            System.out.println("Un rendu a été effectué");
+            System.out.println("Ic");
         }
         else if (this.status == 1 && this.reserve == true){
             this.status = 3;
@@ -181,7 +199,10 @@ public class DocBibliotheque {
             nbemprunt --;
             nbreserv ++;
             verite = true;
-            System.out.println("Un rendu a été effectué");
+            System.out.println("Ic2");
+        }
+        if(verite == false){
+            throw new RetourException();
         }
         return verite;
     }

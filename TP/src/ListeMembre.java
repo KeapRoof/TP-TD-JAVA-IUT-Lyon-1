@@ -27,7 +27,7 @@ public class ListeMembre {
 
     public void affichecarmem(){
         for(int i = 0; i < listeMembre.size(); i++){
-            System.out.println( i +"."+ listeMembre.get(i).getNom());
+            System.out.println( i +" = "+ listeMembre.get(i).getNom());
         }
     }
 

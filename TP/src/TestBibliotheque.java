@@ -38,8 +38,8 @@ public class TestBibliotheque {
         cat1.ajdoc(cd3);
         cat1.ajdoc(cd4);
         cat1.ajdoc(cd5);
-
-        do{
+        try{
+            do{
             System.out.println();
             System.out.println("Veuillez choisir une option");
             System.out.println("0 = Quitter le programme");
@@ -55,6 +55,7 @@ public class TestBibliotheque {
             System.out.println("10 = Nombre de CD");
             System.out.println("11 = Nombre de Livre");
             System.out.println("12 = Obtenir les info d'un membre");
+            
             choix = ent.nextInt();
             switch(choix){
                 case 0:
@@ -67,11 +68,22 @@ public class TestBibliotheque {
                 case 2:
                     choisis_m = choixmembre2();
                     choix2 = choixdoc2();
-                    cat1.emprunterdoc(choix2, choisis_m);
+                    try{
+                        cat1.emprunterdoc(choix2, choisis_m);
+                    }
+                    catch(ExceptionDoc e){
+                        System.out.println("Erreur : " + e.getMessage());
+                    }
                     break;
                 case 3:
+                    
                     choisis_d = choixdoc2();
+                    try{
                     cat1.rendredoc(choisis_d);
+                    }
+                    catch(RetourException e){
+                        System.out.println("Erreur : " + e.getMessage());
+                    }
                     break;
                 case 4:
                     choisis_d = choixdoc2();
@@ -108,54 +120,61 @@ public class TestBibliotheque {
                 default:
                     break;
             }
+            
+            }
+            while (choix != 0);
         }
-        while (choix != 0);
-}
-
-private static DocBibliotheque choisir_doc(){
-    DocBibliotheque c = null;
-    int opt;
-    do{
-        System.out.println();
-        System.out.println("1 = doc1  ou 2 = doc2");
-        opt = ent.nextInt();
-        ent.nextLine();
-        switch(opt){
-            case 1: 
-                c = doc1;
-                break;
-            case 2:
-                c = doc2;
-                break;
-            default:
-                System.out.println("Option invalide !");
-        }
-    } while(opt != 1 && opt !=2);
-    return c;
-}
-
-private static MembreBibliotheque choisir_mem(){
-    MembreBibliotheque c = null;
-    int opt;
-    do{
-        System.out.println();
-        System.out.println("1 = membre1  ou 2 = membre2");
-        opt = ent.nextInt();
-        ent.nextLine();
-        switch(opt){
-            case 1: 
-                c = membre1;
-                break;
-            case 2:
-                c = membre2;
-                break;
-            default:
-                System.out.println("Option invalide !");
+            catch(InputMismatchException e){
+                System.out.println("Mauvaise saisie !");
+                ent = new Scanner(System.in);
+            }
+            
         }
 
-    } while(opt != 1 && opt !=2);
-    return c;
-}
+// private static DocBibliotheque choisir_doc(){
+//     DocBibliotheque c = null;
+//     int opt;
+//     do{
+//         System.out.println();
+//         System.out.println("1 = doc1  ou 2 = doc2");
+//         opt = ent.nextInt();
+//         ent.nextLine();
+//         switch(opt){
+//             case 1: 
+//                 c = doc1;
+//                 break;
+//             case 2:
+//                 c = doc2;
+//                 break;
+//             default:
+//                 System.out.println("Option invalide !");
+//         }
+//     } while(opt != 1 && opt !=2);
+//     return c;
+// }
+
+// private static MembreBibliotheque choisir_mem(){
+//     MembreBibliotheque c = null;
+//     int opt;
+//     do{
+//         System.out.println();
+//         System.out.println("1 = membre1  ou 2 = membre2");
+//         opt = ent.nextInt();
+//         ent.nextLine();
+//         switch(opt){
+//             case 1: 
+//                 c = membre1;
+//                 break;
+//             case 2:
+//                 c = membre2;
+//                 break;
+//             default:
+//                 System.out.println("Option invalide !");
+//         }
+
+//     } while(opt != 1 && opt !=2);
+//     return c;
+// }
 
 private static void menudoc(){
         int choix;

@@ -35,7 +35,7 @@ class CatalogueBibliotheque{
 
     public void affichedoc(){
         for(int i = 0; i < this.catalogue.size(); i++){
-            System.out.println( i +". "+ this.catalogue.get(i).getTitre());
+            System.out.println( i +" = "+ this.catalogue.get(i).getTitre());
         }
         if(this.catalogue.size() < 1){
             System.out.println("Il n'y a rien dans le catalogue");
@@ -60,12 +60,12 @@ class CatalogueBibliotheque{
         }
     }
 
-    public boolean emprunterdoc(int index,MembreBibliotheque membre){
+    public boolean emprunterdoc(int index,MembreBibliotheque membre) throws ExceptionDoc{
         boolean verite = false;
         if(this.accesBibliotheque(index) != null && membre.peutEmprunter()){
-            this.catalogue.get(index).emprunter(membre);
-            membre.incrementerNbDocEmpruntes();
-            verite = true;
+                this.catalogue.get(index).emprunter(membre);
+                membre.incrementerNbDocEmpruntes();
+                verite = true;
         }
         return verite;
     }
@@ -73,7 +73,12 @@ class CatalogueBibliotheque{
     public boolean reservedoc(int index,MembreBibliotheque membre){
         boolean verite = false;
         if(this.accesBibliotheque(index) != null){
-            this.catalogue.get(index).reserver(membre);
+            try{
+                this.catalogue.get(index).reserver(membre);
+            }
+            catch (ExceptionReservation e) {
+                System.out.println(e.getMessage());
+            }
         }
         return verite;
     }
@@ -87,12 +92,12 @@ class CatalogueBibliotheque{
         return verite;
     }
 
-    public boolean rendredoc(int index){
+    public boolean rendredoc(int index) throws RetourException{
         boolean verite = false;
-        if(this.accesBibliotheque(index) != null){
-            this.catalogue.get(index).getEmprunteur().decrementerNbDocEmpruntes();
-            this.catalogue.get(index).rendre();
-            verite = true;
+        if(this.accesBibliotheque(index) != null && this.catalogue.get(index).getEmprunteur() != null){
+                this.catalogue.get(index).getEmprunteur().decrementerNbDocEmpruntes();
+                this.catalogue.get(index).rendre();
+                verite = true;
         }
         return verite;
     }

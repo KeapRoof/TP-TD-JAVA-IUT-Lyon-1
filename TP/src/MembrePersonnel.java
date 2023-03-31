@@ -3,4 +3,12 @@ public class MembrePersonnel extends MembreBibliotheque{
         super(prenom, nom, tel, adresse);
         this.possibiliteEmprunt = 8;
     }
+
+    public void docDisponible(DocBibliotheque d){
+        if(d.getReserveur() == this){
+            d.setReserveur(null);
+            d.setEmprunteur(this);
+            this.nbdocempruntes ++;
+        }
+    }
 }
