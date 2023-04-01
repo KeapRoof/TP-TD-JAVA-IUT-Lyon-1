@@ -6,10 +6,11 @@ public class TestBibliotheque {
     private static MembreBibliotheque membre1 = new MembreEtudiant("Haithem", "Hadj Azzem", 0606060606,   "1 rue de la paix");
     private static MembreBibliotheque membre2 = new MembrePersonnel("Mohamed", "Belkhatir", 0707070707,   "2 rue de la paix");
     private static MembreBibliotheque membre3 = new MembrePersonnel("Rachid", "Fekir", 0707070707,   "2 rue de la paix");
+    private static MembreBibliotheque membre4 = new EmployeBibliotheque("Youcef", "Messi", 0707070707,   "2 rue de la paix", 1);
 
     private static Scanner ent = new Scanner(System.in);
     //TP4
-    private static CatalogueBibliotheque cat1 = new CatalogueBibliotheque();
+    public static CatalogueBibliotheque cat1 = new CatalogueBibliotheque();
     private static ListeMembre lis1 = new ListeMembre();
     //TP5
     private static DocBibliotheque cd1 = new CD("004 178 K20PM", "Caméléon", "ZKR",2022, 0, new String[]{"chanson1", "chanson2", "chanson3"});
@@ -20,17 +21,16 @@ public class TestBibliotheque {
     private static DocBibliotheque cd4 = new CD ("HEHEHE","Banane","Naps",2022,0,new String[]{"chanson1","chanson2","chanson3"});
     private static DocBibliotheque cd5 = new CD ("HEHEHE","Pomme","Naps",2022,0,new String[]{"chanson1","chanson2","chanson3"});
     public static void main(String[] args){
-
         System.out.println("Bienvenue dans la bibliotheque");
         int choix;
         int choix2;
-        int choisis_d;
         MembreBibliotheque choisis_m;
         cat1.ajdoc(doc1);
         cat1.ajdoc(doc2);
         lis1.ajmembre(membre1);
         lis1.ajmembre(membre2);
         lis1.ajmembre(membre3);
+        lis1.ajmembre(membre4);
         cat1.ajdoc(cd1);
         cat1.ajdoc(url1);
         cat1.ajdoc(livre1);
@@ -55,7 +55,6 @@ public class TestBibliotheque {
             System.out.println("10 = Nombre de CD");
             System.out.println("11 = Nombre de Livre");
             System.out.println("12 = Obtenir les info d'un membre");
-            
             choix = ent.nextInt();
             switch(choix){
                 case 0:
@@ -76,18 +75,17 @@ public class TestBibliotheque {
                     }
                     break;
                 case 3:
-                    
-                    choisis_d = choixdoc2();
+                    choix2 = choixdoc2();
                     try{
-                    cat1.rendredoc(choisis_d);
+                    cat1.rendredoc(choix2);
                     }
                     catch(RetourException e){
-                        System.out.println("Erreur : " + e.getMessage());
+                        System.out.println("Erreur : " + e);
                     }
                     break;
                 case 4:
-                    choisis_d = choixdoc2();
-                    cat1.accesBibliotheque(choisis_d).remisesuretagere();
+                    choix2 = choixdoc2();
+                    cat1.accesBibliotheque(choix2).remisesuretagere();
                     break;
                 case 5:
                     choisis_m = choixmembre2();
@@ -109,10 +107,10 @@ public class TestBibliotheque {
                     System.out.println("Le nombre de doc dans la section reservation est : " + DocBibliotheque.nbreserv);
                     break;
                 case 10:
-                    System.out.println("Le nombre de CD est : " + TestBibliotheque.compteCD());
+                    System.out.println("Le nombre de CD est : " + cat1.compteCD());
                     break;
                 case 11:
-                    System.out.println("Le nombre de Livre est : " + TestBibliotheque.compteLivre());
+                    System.out.println("Le nombre de Livre est : " + cat1.compteLivre());
                     break;
                 case 12:
                     menumem();
@@ -248,25 +246,7 @@ private static void menudoc(){
         return choisis_m;
     }
 
-    private static int compteLivre(){
-        int compteur = 0;
-        for (int i = 0; i < cat1.nbdoc(); i++) {
-            if (cat1.accesBibliotheque(i) instanceof Livre) {
-                compteur++;
-            }
-        }
-        return compteur;
-    }
 
-    private static int compteCD(){
-        int compteur = 0;
-        for (int i = 0; i < cat1.nbdoc(); i++) {
-            if (cat1.accesBibliotheque(i) instanceof CD) {
-                compteur++;
-            }
-        }
-        return compteur;
-    }
 
 private static void menumem(){
         int choix;

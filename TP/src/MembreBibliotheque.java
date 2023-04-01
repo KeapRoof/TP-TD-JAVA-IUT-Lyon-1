@@ -1,4 +1,4 @@
-public class MembreBibliotheque{
+public abstract class MembreBibliotheque implements Notifiable {
     private String prenom;
     private String nom;
     private int tel;

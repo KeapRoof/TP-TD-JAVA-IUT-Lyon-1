@@ -11,6 +11,7 @@ public class DocBibliotheque {
     public static int nbreserv = 0;
     private MembreBibliotheque emprunteur;
     private MembreBibliotheque reserveur;
+    private CatalogueBibliotheque catalogue;
 
     public DocBibliotheque(String codearch, String titre, String auteur, int annee, int status){
         this.codearch = codearch;
@@ -22,6 +23,7 @@ public class DocBibliotheque {
         // TP2
         this.emprunteur = null;
         this.reserveur = null;
+        this.catalogue = null;
     }
 
     // TP2    
@@ -67,6 +69,10 @@ public class DocBibliotheque {
         return this.annee;
     }
 
+    public CatalogueBibliotheque getCatalogue(){
+        return this.catalogue;
+    }
+
     // TP2
     public String toString(){
         return 
@@ -108,6 +114,9 @@ public class DocBibliotheque {
         this.reserveur = reserveur;
     }
 
+    public void setCatalogue(CatalogueBibliotheque catalogue){
+        this.catalogue = catalogue;
+    }
 
     // 0 = sur les étagères
     // 1 = emprunter
@@ -153,12 +162,12 @@ public class DocBibliotheque {
     // 1 = emprunter
     // 2 = sur la pile des rendu
     // 3 = Pile reservation
-    public boolean reserver(MembreBibliotheque reserveurpot) throws ExceptionReservation {
+    public boolean reserver(Notifiable reserveurpot) throws ExceptionReservation {
         boolean verite = false;
         if(reserveurpot != null  && this.emprunteur != reserveurpot){
             if(this.reserveur == null){
                 if(this.getStatus() == 1){
-                    this.reserveur = reserveurpot;
+                    this.reserveur = (MembreBibliotheque) reserveurpot;
                     verite = true;
                     this.reserve = true;
                     System.out.println("Un reservation a été effectué");
@@ -190,18 +199,20 @@ public class DocBibliotheque {
             nbemprunt --;
             nbpile ++;
             verite = true;
-            System.out.println("Ic");
+            System.out.println("Un retour a été effectué");
         }
         else if (this.status == 1 && this.reserve == true){
             this.status = 3;
             // TP2
             this.emprunteur = null;
+            // Notifier le membre
+            this.reserveur.docDisponible(this);
             nbemprunt --;
             nbreserv ++;
             verite = true;
-            System.out.println("Ic2");
+            System.out.println("Un retour a été effectué");
         }
-        if(verite == false){
+        else{
             throw new RetourException();
         }
         return verite;
@@ -210,16 +221,17 @@ public class DocBibliotheque {
     // 1 = emprunter
     // 2 = sur la pile des rendu
     // 3 = se reservation
-    public boolean annulerReservation(MembreBibliotheque annuleur){
+    public boolean annulerReservation(Notifiable annuleur){
         boolean verite = false;
         if(annuleur != null){
             if (this.reserve == true){
-                if(annuleur == this.reserveur){
+                if((MembreBibliotheque)annuleur  == this.reserveur){
                     if(this.status == 1){
                         this.reserve = false;
                         // TP2
                         this.reserveur = null;
                         verite = true;
+                        nbreserv --;
                         System.out.println("Une reservation a été annulé");
                     }
                     else if(this.status == 3){

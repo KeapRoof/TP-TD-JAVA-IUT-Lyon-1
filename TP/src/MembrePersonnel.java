@@ -5,10 +5,14 @@ public class MembrePersonnel extends MembreBibliotheque{
     }
 
     public void docDisponible(DocBibliotheque d){
-        if(d.getReserveur() == this){
-            d.setReserveur(null);
-            d.setEmprunteur(this);
-            this.nbdocempruntes ++;
+        if (d instanceof Livre) {
+            System.out.println("Le livre " + d.getTitre() + " est disponible.");
+        }
+        else if (d instanceof CD) {
+            System.out.println("Le CD " + d.getTitre() + " est disponible.");
+        }
+        else if (d instanceof Livre) {
+            System.out.println("Le Livre " + d.getTitre() + " est disponible.");
         }
     }
 }

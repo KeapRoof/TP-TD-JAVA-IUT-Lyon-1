@@ -20,9 +20,12 @@ public class ListeMembre {
 
     public MembreBibliotheque accesmembre(int num){
         // Renvoie l'identite du membre si il existe
-        MembreBibliotheque id = null;
-        
-        return id;
+        for(int i = 0; i < listeMembre.size(); i++){
+            if(listeMembre.get(i).getNumeroabonne() == num){
+                return listeMembre.get(i);
+            }
+        }
+        return null;
     }
 
     public void affichecarmem(){

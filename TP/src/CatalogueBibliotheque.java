@@ -11,6 +11,7 @@ class CatalogueBibliotheque{
         boolean verite = false;
         if(this.catalogue.contains(doc) == false && doc != null){
             this.catalogue.add(doc);
+            doc.setCatalogue(this);
             verite = true;
         }
         return verite;
@@ -104,5 +105,25 @@ class CatalogueBibliotheque{
 
     public int nbdoc(){
         return this.catalogue.size();
+    }
+
+    public int compteLivre(){
+        int compteur = 0;
+        for (int i = 0; i < this.nbdoc(); i++) {
+            if (this.accesBibliotheque(i) instanceof Livre) {
+                compteur++;
+            }
+        }
+        return compteur;
+    }
+
+    public int compteCD(){
+        int compteur = 0;
+        for (int i = 0; i < this.nbdoc(); i++) {
+            if (this.accesBibliotheque(i) instanceof CD) {
+                compteur++;
+            }
+        }
+        return compteur;
     }
 }
