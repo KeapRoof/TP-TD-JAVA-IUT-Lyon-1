@@ -1,5 +1,9 @@
 import java.util.*;
+
 public class TestBibliotheque {
+
+
+    // TP1
     private static DocBibliotheque doc1 = new DocBibliotheque("004 178 K20PM", "Introduction a Java", "J.Leblanc", 2015, 0);
     private static DocBibliotheque doc2 = new DocBibliotheque("9674987T248O", "Structure de données", "M.Machin", 2022, 0);
     // TP2
@@ -20,7 +24,10 @@ public class TestBibliotheque {
     private static DocBibliotheque cd3 = new CD ("HEHEHE","Pasteque","Naps",2022,0,new String[]{"chanson1","chanson2","chanson3"});
     private static DocBibliotheque cd4 = new CD ("HEHEHE","Banane","Naps",2022,0,new String[]{"chanson1","chanson2","chanson3"});
     private static DocBibliotheque cd5 = new CD ("HEHEHE","Pomme","Naps",2022,0,new String[]{"chanson1","chanson2","chanson3"});
+
     public static void main(String[] args){
+
+
         System.out.println("Bienvenue dans la bibliotheque");
         int choix;
         int choix2;

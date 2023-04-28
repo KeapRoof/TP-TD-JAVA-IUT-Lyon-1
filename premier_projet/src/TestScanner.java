@@ -1,5 +1,5 @@
 import java.io.*;
-import java.util.Scanner;
+import java.util.*;
 
 public class TestScanner{
 
@@ -17,21 +17,21 @@ public class TestScanner{
         }
     }
 
-public static void main(String[] args) throws Exception{
-    Scanner sc = new Scanner(new File("C:/Users/Haithem/Desktop/liste-successeurs.csv"), "UTF-8");  
-    sc.useDelimiter(";");   //sets the delimiter pattern  
-    while (sc.hasNext())  //returns a boolean value  
+public static void main(String[] args) throws IOException{
+    Scanner sc = new Scanner(new FileReader("C:/Users/Haithem/Desktop/Java/premier_projet/src/liste-successeurs.csv"));  
+    sc.useDelimiter(";"); 
+    while (sc.hasNext())
         {
-            if(sc.next().contains("S")) //find and returns the next complete token from this scanner
-            {
+            // Put the next token in the string
+            String s = sc.next();
+            if(s.contains("S")){
                 
-                public static MaillonGraphe sc.next() = new MaillonGraphe("Add", "Sdd");
             }
             System.out.print(sc.next().replaceAll("S",""));  //find and returns the next complete token from this scanner 
             
             System.out.print(" "); 
     }   
-    sc.close();  //closes the scanner  
+    sc.close();
 
 }
 }
