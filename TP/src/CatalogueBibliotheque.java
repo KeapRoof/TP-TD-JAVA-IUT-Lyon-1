@@ -1,10 +1,10 @@
-import java.util.ArrayList;
+import java.util.*;
 
 class CatalogueBibliotheque{
-    private ArrayList<DocBibliotheque> catalogue;
+    private List<DocBibliotheque> catalogue;
 
     public CatalogueBibliotheque(){
-        this.catalogue = new ArrayList<DocBibliotheque>();
+        this.catalogue = new LinkedList<DocBibliotheque>();
     }
 
     public boolean ajdoc(DocBibliotheque doc){
@@ -35,21 +35,26 @@ class CatalogueBibliotheque{
     }
 
     public void affichedoc(){
-        for(int i = 0; i < this.catalogue.size(); i++){
-            System.out.println( i +" = "+ this.catalogue.get(i).getTitre());
+        Iterator<DocBibliotheque> it = this.catalogue.iterator();
+        int i = 0;
+        if(this.catalogue.isEmpty()){
+            System.out.println("Le catalogue est vide");
         }
-        if(this.catalogue.size() < 1){
-            System.out.println("Il n'y a rien dans le catalogue");
+        while(it.hasNext()){
+            DocBibliotheque doc = it.next();
+            System.out.println( i +" = "+ doc.getTitre());
+            i = i + 1;
         }
     }
 
     public void affichedocemp(){
-        int i = 0;
-        while(accesBibliotheque(i) != null)
-            if(this.catalogue.get(i).getEmprunteur() != null){
-                System.out.println(this.catalogue.get(i).getTitre());
+        Iterator<DocBibliotheque> it = this.catalogue.iterator();
+        while(it.hasNext()){
+            DocBibliotheque doc = it.next();
+            if(doc.getEmprunteur() != null){
+                System.out.println(doc.getTitre());
             }
-            i = i + 1;
+        }
     }
 
     public void affichecardoc(DocBibliotheque doc){
@@ -109,9 +114,11 @@ class CatalogueBibliotheque{
 
     public int compteLivre(){
         int compteur = 0;
-        for (int i = 0; i < this.nbdoc(); i++) {
-            if (this.accesBibliotheque(i) instanceof Livre) {
-                compteur++;
+        Iterator<DocBibliotheque> it = this.catalogue.iterator();
+        while(it.hasNext()){
+            DocBibliotheque doc = it.next();
+            if(doc instanceof Livre){
+                compteur = compteur + 1;
             }
         }
         return compteur;
@@ -119,8 +126,8 @@ class CatalogueBibliotheque{
 
     public int compteCD(){
         int compteur = 0;
-        for (int i = 0; i < this.nbdoc(); i++) {
-            if (this.accesBibliotheque(i) instanceof CD) {
+        for (DocBibliotheque i : this.catalogue){
+            if (i instanceof CD) {
                 compteur++;
             }
         }
