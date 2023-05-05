@@ -1,4 +1,5 @@
-public class DocBibliotheque {
+
+public class DocBibliotheque implements Comparable<DocBibliotheque> {
     private String codearch;
     private String titre;
     private String auteur;
@@ -303,4 +304,12 @@ public class DocBibliotheque {
         }
         return trad;
     }
+
+    public int compareTo(DocBibliotheque doc){
+        int val;
+        val = this.getCodearch().compareTo(doc.getCodearch());
+        return val;
+    }
+
+
 }
